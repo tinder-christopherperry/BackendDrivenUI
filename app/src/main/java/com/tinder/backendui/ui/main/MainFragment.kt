@@ -1,14 +1,15 @@
 package com.tinder.backendui.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.airbnb.epoxy.*
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.airbnb.epoxy.EpoxyModel
+import com.airbnb.epoxy.EpoxyRecyclerView
+import com.airbnb.epoxy.carousel
 import com.tinder.backendui.R
-import java.lang.Exception
 
 /**
  * Displays a Component Based Server Driven UI.
@@ -26,6 +27,11 @@ import java.lang.Exception
  * }
  */
 class MainFragment : Fragment() {
+
+    private val componentProviders = mapOf(
+        "MessagesSection" to MessagesSectionComponentProvider(),
+        "HighlightCard" to HighlightCardComponentProvider()
+    )
 
     private lateinit var viewModel: MainViewModel
     private lateinit var recyclerView: EpoxyRecyclerView
@@ -58,43 +64,19 @@ class MainFragment : Fragment() {
                         }
                     }
 
-                    "TextRow" -> {
-                        val textRowContent = component.content as Content.TextRowContent
-                        textRow {
-                            id("textRow$index")
-                            textContent(textRowContent.text)
-                        }
-                    }
-
-                    "MessagesSection" -> {
-                        val messagesSectionContent = component.content as Content.MessagesSectionContent
-                        messagesSection {
-                            id("messagesSection$index")
-                            sectionTitle(messagesSectionContent.sectionTitle)
-                            messages(messagesSectionContent.messages)
-                        }
-                    }
+                    else -> add(componentProviders[component.type]!!.getComponent(component))
                 }
             }
         }
     }
 
     private fun carouselModels(content: Content.CarouselContent): List<EpoxyModel<out View>> {
-        return content.items.mapIndexed { index, item ->
-            when (item) {
-                is Content.HighlightCardContent -> highlightCardModel(index, item)
+        return content.items.map {
+            when (it.type) {
+                "HighlightCard" -> componentProviders["HighlightCard"]!!.getComponent(it)
                 else -> throw Exception("Unsupported view type in carousel")
             }
         }
-    }
-
-    private fun highlightCardModel(index: Int, content: Content.HighlightCardContent): HighlightCardModel_ {
-        return HighlightCardModel_()
-            .id("HighlightCard$index")
-            .leftText(content.leftText)
-            .topRightText(content.topRightText)
-            .midRightText(content.midRightText)
-            .buttonText(content.buttonText)
     }
 }
 

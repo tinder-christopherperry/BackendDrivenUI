@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
 
-    fun getState() : State<ApiResponse> {
+    fun getState(): State<ApiResponse> {
         val response = ApiResponse(
             listOf(
                 carousel(1),
@@ -23,23 +23,35 @@ class MainViewModel : ViewModel() {
             type = "Carousel",
             content = Content.CarouselContent(
                 items = listOf(
-                    Content.HighlightCardContent(
-                        leftText = "Jenn, 29",
-                        topRightText = "IN COMMON",
-                        midRightText = "You and Jenn both go to USC",
-                        buttonText = "Message"
+                    Component(
+                        id = "highlightcard1",
+                        type = "HighlightCard",
+                        content = Content.HighlightCardContent(
+                            leftText = "Jenn, 29",
+                            topRightText = "IN COMMON",
+                            midRightText = "You and Jenn both go to USC",
+                            buttonText = "Message"
+                        )
                     ),
-                    Content.HighlightCardContent(
-                        leftText = "Michelle, 40",
-                        topRightText = "IN COMMON",
-                        midRightText = "Michelle also loves SUSHI",
-                        buttonText = "Message"
+                    Component(
+                        id = "highlightcard1",
+                        type = "HighlightCard",
+                        content = Content.HighlightCardContent(
+                            leftText = "Michelle, 40",
+                            topRightText = "IN COMMON",
+                            midRightText = "Michelle also loves SUSHI",
+                            buttonText = "Message"
+                        )
                     ),
-                    Content.HighlightCardContent(
-                        leftText = "Christina, 35",
-                        topRightText = "IN COMMON",
-                        midRightText = "Christina likes DOGS",
-                        buttonText = "Message"
+                    Component(
+                        id = "highlightcard1",
+                        type = "HighlightCard",
+                        content = Content.HighlightCardContent(
+                            leftText = "Christina, 35",
+                            topRightText = "IN COMMON",
+                            midRightText = "Christina likes DOGS",
+                            buttonText = "Message"
+                        )
                     )
                 )
             )

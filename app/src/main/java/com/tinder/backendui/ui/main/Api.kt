@@ -12,7 +12,7 @@ data class Component(
 )
 
 sealed class Content {
-    data class CarouselContent(val items: List<Content>) : Content()
+    data class CarouselContent(val items: List<Component>) : Content()
 
     data class TextRowContent(val text: String) : Content()
 
