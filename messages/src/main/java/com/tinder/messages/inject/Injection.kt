@@ -11,12 +11,12 @@ import dagger.multibindings.StringKey
 
 @Module
 @InstallIn(ActivityComponent::class)
-class HighlightsModule {
+class MessagesModule {
 
     @Provides
     @IntoMap
     @StringKey("MessagesSection")
-    fun provideHighlightCard() : ComponentProvider {
+    fun provideMessagesSection() : ComponentProvider {
         return MessagesSectionComponentProvider()
     }
 }
