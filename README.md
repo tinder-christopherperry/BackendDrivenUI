@@ -16,7 +16,7 @@ The Component data format translates to either rows in a RecyclerView or items i
 
 ### messages and hightlights modules
 
-Examples of feature modules that provide implementations of ui Component implementations. In both of these modules implementations of `ComponentProvider` are declared in a Dagger module. See: HighlightsModule and MessagesModule for details.
+Examples of feature modules that provide implementations of ui Component implementations. In both of these modules implementations of `ComponentProvider` are declared in a Dagger module. See: HighlightsModule and MessagesModule for details. Note that `View` and `ComponentProvider` implementations in these modules are marked as `internal` and cannot be referenced in the app module!
 
 ### app module
 
