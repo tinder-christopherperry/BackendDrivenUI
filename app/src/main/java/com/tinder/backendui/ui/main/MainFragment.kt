@@ -33,11 +33,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
-//    private val componentProviders = mapOf<String, ComponentProvider>(
-//        "MessagesSection" to MessagesSectionComponentProvider()
-////        "HighlightCard" to HighlightCardComponentProvider()
-//    )
-
     @Inject
     lateinit var componentProviders: Map<String, @JvmSuppressWildcards ComponentProvider>
     private lateinit var viewModel: MainViewModel
@@ -83,10 +78,7 @@ class MainFragment : Fragment() {
 
     private fun carouselModels(content: Content.CarouselContent): List<EpoxyModel<out View>> {
         return content.items.map {
-            when (it.type) {
-                "HighlightCard" -> componentProviders["HighlightCard"]!!.getComponent(it)
-                else -> throw Exception("Unsupported view type in carousel")
-            }
+            componentProviders[it.type]!!.getComponent(it)
         }
     }
 }

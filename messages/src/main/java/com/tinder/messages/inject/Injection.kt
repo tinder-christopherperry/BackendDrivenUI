@@ -1,5 +1,6 @@
-package com.tinder.backendui.ui.main
+package com.tinder.messages.inject
 
+import com.tinder.messages.MessagesSectionComponentProvider
 import com.tinder.plugins.ComponentProvider
 import dagger.Module
 import dagger.Provides
@@ -10,11 +11,12 @@ import dagger.multibindings.StringKey
 
 @Module
 @InstallIn(ActivityComponent::class)
-class InjectionModule {
+class HighlightsModule {
+
     @Provides
     @IntoMap
     @StringKey("MessagesSection")
-    fun provideMessagesSection() : ComponentProvider {
+    fun provideHighlightCard() : ComponentProvider {
         return MessagesSectionComponentProvider()
     }
 }

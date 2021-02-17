@@ -1,4 +1,4 @@
-package com.tinder.backendui.ui.main
+package com.tinder.messages
 
 import android.content.Context
 import android.view.View
@@ -7,7 +7,6 @@ import android.widget.TextView
 import com.airbnb.epoxy.ModelProp
 import com.airbnb.epoxy.ModelView
 import com.airbnb.epoxy.TextProp
-import com.tinder.backendui.R
 import com.tinder.plugins.Message
 
 @ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)
