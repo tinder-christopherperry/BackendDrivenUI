@@ -10,7 +10,7 @@ import com.airbnb.epoxy.TextProp
 import com.tinder.plugins.Message
 
 @ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)
-class MessagesSection(context: Context): FrameLayout(context) {
+internal class MessagesSection(context: Context): FrameLayout(context) {
 
     private var sectionTitle: TextView
     private var messageOne: View

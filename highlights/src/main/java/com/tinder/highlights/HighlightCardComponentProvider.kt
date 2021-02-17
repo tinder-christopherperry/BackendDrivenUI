@@ -6,7 +6,7 @@ import com.tinder.plugins.Component
 import com.tinder.plugins.ComponentProvider
 import com.tinder.plugins.Content
 
-class HighlightCardComponentProvider: ComponentProvider {
+internal class HighlightCardComponentProvider: ComponentProvider {
 
     override fun getComponent(component: Component): EpoxyModel<out View> {
         val content = component.content as Content.HighlightCardContent

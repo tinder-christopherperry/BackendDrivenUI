@@ -6,7 +6,7 @@ import com.tinder.plugins.Component
 import com.tinder.plugins.ComponentProvider
 import com.tinder.plugins.Content
 
-class MessagesSectionComponentProvider: ComponentProvider {
+internal class MessagesSectionComponentProvider: ComponentProvider {
 
     override fun getComponent(component: Component): EpoxyModel<out View> {
         val messagesSectionContent = component.content as Content.MessagesSectionContent

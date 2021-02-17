@@ -9,7 +9,7 @@ import com.airbnb.epoxy.TextProp
 import com.tinder.highlights.R
 
 @ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)
-class HighlightCard(context: Context): FrameLayout(context) {
+internal class HighlightCard(context: Context): FrameLayout(context) {
 
     private var leftText: TextView
     private var topRightText: TextView
