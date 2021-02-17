@@ -1,2 +1,4 @@
+include ':plugins'
+include ':highlights'
 include ':app'
 rootProject.name = "Backend Driven UI"

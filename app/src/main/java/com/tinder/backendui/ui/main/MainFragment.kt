@@ -10,6 +10,10 @@ import com.airbnb.epoxy.EpoxyModel
 import com.airbnb.epoxy.EpoxyRecyclerView
 import com.airbnb.epoxy.carousel
 import com.tinder.backendui.R
+import com.tinder.plugins.ComponentProvider
+import com.tinder.plugins.Content
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * Displays a Component Based Server Driven UI.
@@ -26,24 +30,31 @@ import com.tinder.backendui.R
  *   }
  * }
  */
+@AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    private val componentProviders = mapOf(
-        "MessagesSection" to MessagesSectionComponentProvider(),
-        "HighlightCard" to HighlightCardComponentProvider()
-    )
+//    private val componentProviders = mapOf<String, ComponentProvider>(
+//        "MessagesSection" to MessagesSectionComponentProvider()
+////        "HighlightCard" to HighlightCardComponentProvider()
+//    )
 
+    @Inject
+    lateinit var componentProviders: Map<String, @JvmSuppressWildcards ComponentProvider>
     private lateinit var viewModel: MainViewModel
     private lateinit var recyclerView: EpoxyRecyclerView
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        recyclerView = view!!.findViewById(R.id.recyclerView)
+        recyclerView = requireView().findViewById(R.id.recyclerView)
 
         val state = viewModel.getState()
         if (state is State.Success) {

@@ -1,4 +1,4 @@
-package com.tinder.backendui.ui.main
+package com.tinder.highlights
 
 import android.content.Context
 import android.widget.Button
@@ -6,7 +6,7 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import com.airbnb.epoxy.ModelView
 import com.airbnb.epoxy.TextProp
-import com.tinder.backendui.R
+import com.tinder.highlights.R
 
 @ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)
 class HighlightCard(context: Context): FrameLayout(context) {

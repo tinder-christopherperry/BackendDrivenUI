@@ -8,6 +8,7 @@ import com.airbnb.epoxy.ModelProp
 import com.airbnb.epoxy.ModelView
 import com.airbnb.epoxy.TextProp
 import com.tinder.backendui.R
+import com.tinder.plugins.Message
 
 @ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)
 class MessagesSection(context: Context): FrameLayout(context) {
@@ -52,6 +53,4 @@ class MessagesSection(context: Context): FrameLayout(context) {
             }
         }
     }
-
-    data class Message(val title: String, val subtitle: String)
 }

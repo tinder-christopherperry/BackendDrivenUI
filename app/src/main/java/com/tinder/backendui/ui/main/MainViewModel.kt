@@ -1,6 +1,9 @@
 package com.tinder.backendui.ui.main
 
 import androidx.lifecycle.ViewModel
+import com.tinder.plugins.Component
+import com.tinder.plugins.Content
+import com.tinder.plugins.Message
 
 class MainViewModel : ViewModel() {
 
@@ -65,15 +68,15 @@ class MainViewModel : ViewModel() {
             content = Content.MessagesSectionContent(
                 sectionTitle = title,
                 messages = listOf(
-                    MessagesSection.Message(
+                    Message(
                         title = "Robert",
                         subtitle = "Give me a scotch. I’m starving."
                     ),
-                    MessagesSection.Message(
+                    Message(
                         title = "Iron Man",
                         subtitle = "Better clench up, Legolas."
                     ),
-                    MessagesSection.Message(
+                    Message(
                         title = "RDJ",
                         subtitle = "I told you. I don’t want to join your super secret boy band."
                     )
