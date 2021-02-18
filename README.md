@@ -42,7 +42,7 @@ data class Message(val title: String, val subtitle: String)
 
 I did not implement a `TextRow` or a `ButtonRow` in this example but it's easily added to put text or a button anywhere on the page.
 
-## Structure
+## Project Structure
 
 This project contains 4 Gradle modules: app, plugins, messages, and highlights.
 
