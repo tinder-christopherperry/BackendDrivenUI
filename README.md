@@ -8,7 +8,39 @@ The basic idea is to break up UI into components that match horizontal slices of
 
 ![UI Slices Example](ui-slices.png)
 
+Here's what the API parsed to Kotlin looks like in this example
 
+```kotlin
+data class Component(
+    val id: String,
+    val type: String,
+    val content: Content
+)
+
+sealed class Content {
+    data class CarouselContent(val items: List<Component>) : Content()
+
+    data class TextRowContent(val text: String) : Content()
+
+    data class ButtonRowContent(val text: String) : Content()
+
+    data class HighlightCardContent(
+        val leftText: String,
+        val topRightText: String,
+        val midRightText: String,
+        val buttonText: String
+    ) : Content()
+
+    data class MessagesSectionContent(
+        val sectionTitle: String,
+        val messages: List<Message>
+    ) : Content()
+}
+
+data class Message(val title: String, val subtitle: String)
+```
+
+I did not implement a `TextRow` or a `ButtonRow` in this example but it's easily added to put text or a button anywhere on the page.
 
 ## Structure
 
