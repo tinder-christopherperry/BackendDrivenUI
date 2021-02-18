@@ -4,7 +4,7 @@ An example of how some screens could be driven by the backend at Tinder. See [th
 
 The example uses Android Architecture components, MVVM and [Epoxy](https://github.com/airbnb/epoxy). I used Epoxy to make my life easier, but of course you'd be free to use whatever you want (I'm looking at you [Jetpack Compose](https://developer.android.com/jetpack/compose)). See the [ViewModel](https://github.com/tinder-christopherperry/BackendDrivenUI/blob/main/app/src/main/java/com/tinder/backendui/ui/main/MainViewModel.kt) for an example of a response (hardcoded) from the server.
 
-The basic idea is to break up UI into components that match horizontal slices of the client UI. 
+The basic idea is to break up UI into components that match horizontal slices of the client UI. Developers are freed up to develop UI components, never having to touch the page. This lets multiple teams add/remove/change things on the same page in tandem and not have to step on each other.
 
 ![UI Slices Example](ui-slices.png)
 
