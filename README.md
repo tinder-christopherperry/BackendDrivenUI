@@ -4,6 +4,12 @@ An example of how some screens could be driven by the backend at Tinder. See [th
 
 The example uses Android Architecture components, MVVM and [Epoxy](https://github.com/airbnb/epoxy). See the [ViewModel](https://github.com/tinder-christopherperry/BackendDrivenUI/blob/main/app/src/main/java/com/tinder/backendui/ui/main/MainViewModel.kt) for an example of a response (hardcoded) from the server.
 
+The basic idea is to break up UI into components that match horizontal slices of the client UI. 
+
+![UI Slices Example](ui-slices.png)
+
+
+
 ## Structure
 
 This project contains 4 Gradle modules: app, plugins, messages, and highlights.
