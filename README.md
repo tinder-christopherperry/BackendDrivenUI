@@ -2,9 +2,47 @@
 
 An example of how some screens could be driven by the backend at Tinder. See [this proposal](https://docs.google.com/document/d/18u75-lQ33dD6ln-tJPl0LYwqjlot2mEKPB7XTBe8l2E/edit)
 
-The example uses Android Architecture components, MVVM and [Epoxy](https://github.com/airbnb/epoxy). See the [ViewModel](https://github.com/tinder-christopherperry/BackendDrivenUI/blob/main/app/src/main/java/com/tinder/backendui/ui/main/MainViewModel.kt) for an example of a response (hardcoded) from the server.
+The example uses Android Architecture components, MVVM and [Epoxy](https://github.com/airbnb/epoxy). I used Epoxy to make my life easier, but of course you'd be free to use whatever you want (I'm looking at you [Jetpack Compose](https://developer.android.com/jetpack/compose)). See the [ViewModel](https://github.com/tinder-christopherperry/BackendDrivenUI/blob/main/app/src/main/java/com/tinder/backendui/ui/main/MainViewModel.kt) for an example of a response (hardcoded) from the server.
 
-## Structure
+The basic idea is to break up UI into components that match horizontal slices of the client UI. Developers are freed up to develop UI components, never having to touch the page. This lets multiple teams add/remove/change things on the same page in tandem and not have to step on each other.
+
+![UI Slices Example](ui-slices.png)
+
+Here's what the API parsed to Kotlin looks like in this example
+
+```kotlin
+data class Component(
+    val id: String,
+    val type: String,
+    val content: Content
+)
+
+sealed class Content {
+    data class CarouselContent(val items: List<Component>) : Content()
+
+    data class TextRowContent(val text: String) : Content()
+
+    data class ButtonRowContent(val text: String) : Content()
+
+    data class HighlightCardContent(
+        val leftText: String,
+        val topRightText: String,
+        val midRightText: String,
+        val buttonText: String
+    ) : Content()
+
+    data class MessagesSectionContent(
+        val sectionTitle: String,
+        val messages: List<Message>
+    ) : Content()
+}
+
+data class Message(val title: String, val subtitle: String)
+```
+
+I did not implement a `TextRow` or a `ButtonRow` in this example but it's easily added to put text or a button anywhere on the page.
+
+## Project Structure
 
 This project contains 4 Gradle modules: app, plugins, messages, and highlights.
 
