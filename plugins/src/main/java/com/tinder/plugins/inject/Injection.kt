@@ -1,9 +1,7 @@
 package com.tinder.plugins.inject
 
-import com.tinder.plugins.ComponentProvider
-import dagger.Binds
+import com.tinder.plugins.ComposableBuilder
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.multibindings.Multibinds
@@ -13,5 +11,5 @@ import dagger.multibindings.Multibinds
 abstract class PluginsModule {
 
     @Multibinds
-    abstract fun componentProviders() : Map<String, @JvmSuppressWildcards ComponentProvider>
+    abstract fun componentProviders() : Map<String, @JvmSuppressWildcards ComposableBuilder>
 }

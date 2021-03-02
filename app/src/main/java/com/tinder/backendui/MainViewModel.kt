@@ -1,4 +1,4 @@
-package com.tinder.backendui.ui.main
+package com.tinder.backendui
 
 import androidx.lifecycle.ViewModel
 import com.tinder.plugins.Component

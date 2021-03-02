@@ -1,7 +1,7 @@
 package com.tinder.messages.inject
 
-import com.tinder.messages.MessagesSectionComponentProvider
-import com.tinder.plugins.ComponentProvider
+import com.tinder.messages.MessagesSectionComposableBuilder
+import com.tinder.plugins.ComposableBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +16,7 @@ class MessagesModule {
     @Provides
     @IntoMap
     @StringKey("MessagesSection")
-    fun provideMessagesSection() : ComponentProvider {
-        return MessagesSectionComponentProvider()
+    fun provideMessagesSection() : ComposableBuilder {
+        return MessagesSectionComposableBuilder()
     }
 }

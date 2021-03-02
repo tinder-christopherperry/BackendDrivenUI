@@ -10,7 +10,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -32,6 +32,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+    }
 }
 
 dependencies {
@@ -49,9 +55,10 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.32'
     kapt 'com.google.dagger:dagger-compiler:2.32'
 
-    implementation "com.airbnb.android:epoxy:$epoxyVersion"
-    // Add the annotation processor if you are using Epoxy's annotations (recommended)
-    kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
+    // Jetpack Compose
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

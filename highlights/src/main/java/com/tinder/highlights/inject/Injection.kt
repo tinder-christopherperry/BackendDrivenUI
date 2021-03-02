@@ -1,7 +1,7 @@
 package com.tinder.highlights.inject
 
-import com.tinder.highlights.HighlightCardComponentProvider
-import com.tinder.plugins.ComponentProvider
+import com.tinder.highlights.HighlightCardComposableBuilder
+import com.tinder.plugins.ComposableBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +16,7 @@ class HighlightsModule {
     @Provides
     @IntoMap
     @StringKey("HighlightCard")
-    fun provideHighlightCard() : ComponentProvider {
-        return HighlightCardComponentProvider()
+    fun provideHighlightCard() : ComposableBuilder {
+        return HighlightCardComposableBuilder()
     }
 }
