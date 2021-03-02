@@ -1,8 +1,10 @@
 # BackendDrivenUI
 
-An example of how some screens could be driven by the backend at Tinder. See [this proposal](https://docs.google.com/document/d/18u75-lQ33dD6ln-tJPl0LYwqjlot2mEKPB7XTBe8l2E/edit)
+<img src="screenshot.png" width="300px" />
 
-The example uses Android Architecture components, MVVM and [Epoxy](https://github.com/airbnb/epoxy). I used Epoxy to make my life easier, but of course you'd be free to use whatever you want (I'm looking at you [Jetpack Compose](https://developer.android.com/jetpack/compose)). See the [ViewModel](https://github.com/tinder-christopherperry/BackendDrivenUI/blob/main/app/src/main/java/com/tinder/backendui/ui/main/MainViewModel.kt) for an example of a response (hardcoded) from the server.
+An example of how some screens could be driven by the backend at Tinder, using [Jetpack Compose](https://developer.android.com/jetpack/compose). See [this proposal](https://docs.google.com/document/d/18u75-lQ33dD6ln-tJPl0LYwqjlot2mEKPB7XTBe8l2E/edit)
+
+The example uses Android Architecture components, MVVM and [Jetpack Compose](https://developer.android.com/jetpack/compose). See the [ViewModel](https://github.com/tinder-christopherperry/BackendDrivenUI/blob/main/app/src/main/java/com/tinder/backendui/ui/main/MainViewModel.kt) for an example of a response (hardcoded) from the server.
 
 The basic idea is to break up UI into components that match horizontal slices of the client UI. Developers are freed up to develop UI components, never having to touch the page. This lets multiple teams add/remove/change things on the same page in tandem and not have to step on each other.
 
@@ -19,10 +21,6 @@ data class Component(
 
 sealed class Content {
     data class CarouselContent(val items: List<Component>) : Content()
-
-    data class TextRowContent(val text: String) : Content()
-
-    data class ButtonRowContent(val text: String) : Content()
 
     data class HighlightCardContent(
         val leftText: String,
