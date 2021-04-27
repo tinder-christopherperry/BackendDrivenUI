@@ -2,7 +2,6 @@ package com.tinder.backendui
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -12,6 +11,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.airbnb.mvrx.InternalMavericksApi
+import com.airbnb.mvrx.Loading
+import com.airbnb.mvrx.Success
+import com.tinder.plugins.Component
 import com.tinder.plugins.ComposableBuilder
 import com.tinder.plugins.Content
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,28 +25,33 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var componentProviders: Map<String, @JvmSuppressWildcards ComposableBuilder>
-    private val viewModel: MainViewModel by viewModels()
 
+    @InternalMavericksApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContent { Content() }
+    }
 
-        val state = viewModel.getState()
-        if (state is State.Success) {
-            setContent {
-                Content(state.data)
-            }
+    @InternalMavericksApi
+    @Composable
+    private fun Content() {
+        val viewModel: MainViewModel = mavericksViewModel()
+        val state = viewModel.collectState()
+
+        when (val components = state.components) {
+            is Loading -> {}
+            is Success -> ScreenContent(components())
         }
     }
 
     @Composable
-    private fun Content(response: ApiResponse) {
+    private fun ScreenContent(components: List<Component>) {
         LazyColumn(Modifier.background(color = Color.Gray)) {
-            items(response.components) { component ->
+            items(components) { component ->
                 when (component.type) {
                     "Carousel" -> {
                         Carousel(
-                            content = component.content as Content.CarouselContent,
-                            numCarouselItemsShown = NUM_CAROUSEL_ITEMS_SHOWN
+                            content = component.content as Content.CarouselContent
                         )
                     }
                     else -> {
@@ -55,11 +63,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     @Composable
-    private fun Carousel(content: Content.CarouselContent, numCarouselItemsShown: Float) {
-        require(numCarouselItemsShown > 0f)
+    private fun Carousel(content: Content.CarouselContent) {
         LazyRow {
             items(content.items) { item ->
-                Box(Modifier.fillParentMaxWidth(1f / numCarouselItemsShown)) {
+                Box(Modifier.fillParentMaxWidth(1f / NUM_CAROUSEL_ITEMS_SHOWN)) {
                     componentProviders[item.type]!!.BuildComposable(item)
                 }
             }
